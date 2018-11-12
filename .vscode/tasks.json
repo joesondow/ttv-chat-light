@@ -4,11 +4,88 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Build Server",
       "type": "typescript",
-      "tsconfig": "tsconfig.json",
-      "problemMatcher": [
-        "$tsc"
-      ]
+      "tsconfig": "ttv-chat-light\\src\\server\\tsconfig.json",
+      "options": {
+        "shell": {
+          "executable": "powershell.exe"
+        }
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "Build Client",
+      "type": "typescript",
+      "tsconfig": "ttv-chat-light\\src\\client\\tsconfig.json",
+      "options": {
+        "shell": {
+          "executable": "powershell.exe"
+        }
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "Build",
+      "dependsOn": ["Build Server", "Build Client"]
+    },
+    {
+      "label": "Build/Watch Server",
+      "type": "typescript",
+      "tsconfig": "ttv-chat-light\\src\\server\\tsconfig.json",
+      "option": "watch",
+      "options": {
+        "shell": {
+          "executable": "powershell.exe"
+        }
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      },
+      "problemMatcher": ["$tsc-watch"]
+    },
+    {
+      "label": "Build/Watch Client",
+      "type": "typescript",
+      "tsconfig": "ttv-chat-light\\src\\client\\tsconfig.json",
+      "option": "watch",
+      "options": {
+        "shell": {
+          "executable": "powershell.exe"
+        }
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      },
+      "problemMatcher": ["$tsc-watch"]
+    },
+    {
+      "label": "Build Watch",
+      "dependsOn": ["Build/Watch Server", "Build/Watch Client"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "isBackground": true,
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": true,
+        "panel": "new",
+        "showReuseMessage": true,
+        "clear": true
+      },
+      "problemMatcher": ["$tsc-watch"]
     }
   ]
 }

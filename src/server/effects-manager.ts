@@ -1,9 +1,9 @@
 import { readEffects } from './file-manager';
 
 export default class EffectsManager {
-  allEffects: any | undefined;
-  specialEffects: any | undefined;
-  alertEffects: any | undefined;
+  private allEffects: any | undefined;
+  private specialEffects: any | undefined;
+  private alertEffects: any | undefined;
 
   constructor() {
     this.loadEffects();
@@ -15,7 +15,8 @@ export default class EffectsManager {
    * @param chatMessage the raw message parsed from chat
    * @returns object {
    *  type: 'eventType',
-   *  colors: ['color1', 'color2', ...]
+   *  colors: ['color1', 'color2', ...],
+   *  state: 'on'
    * }
    */
   public determineSpecialEffect = (chatMessage: string): any | undefined => {
